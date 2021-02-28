@@ -58,6 +58,11 @@ namespace RandomGithubWinFormsUI
         {
             IGitHubRepo repo = await GetRandomGitHub();
             UpdateLabels(repo);
+
+            if(repo.Id == 342959905)
+            {
+                MessageBox.Show("No way! I found myself!");
+            }
         }
 
         private void UpdateLabels(IGitHubRepo repo)
@@ -94,7 +99,7 @@ namespace RandomGithubWinFormsUI
             }
             else
             {
-                tryMax = 300000000;
+                tryMax = 350000000;
             }
 
             IGitHubRepo repo = null;
