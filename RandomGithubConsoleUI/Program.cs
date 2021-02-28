@@ -54,6 +54,10 @@ namespace RandomGithubConsoleUI
                 {
                     tryMax = res;
                 }
+                else
+                {
+                    tryMax = 300000000;
+                }
 
                 while (repo?.Name == null)
                 {
