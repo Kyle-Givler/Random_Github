@@ -37,16 +37,17 @@ namespace RandomGithubWinFormsUI
             this.lblUrl = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblLanguage = new System.Windows.Forms.Label();
-            this.lblOwnerGHValue = new System.Windows.Forms.Label();
             this.lblOwnerValue = new System.Windows.Forms.Label();
             this.lblIdValue = new System.Windows.Forms.Label();
             this.lblNameValue = new System.Windows.Forms.Label();
-            this.lblDescValue = new System.Windows.Forms.Label();
-            this.lblUrlValue = new System.Windows.Forms.Label();
             this.lblLanguageValue = new System.Windows.Forms.Label();
             this.btnFind = new System.Windows.Forms.Button();
             this.lblRemainingValue = new System.Windows.Forms.Label();
             this.lblRemainingCalls = new System.Windows.Forms.Label();
+            this.textBoxDesc = new System.Windows.Forms.TextBox();
+            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
+            this.linkLabelOwner = new System.Windows.Forms.LinkLabel();
+            this.linkLabelUrl = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -103,7 +104,7 @@ namespace RandomGithubWinFormsUI
             // 
             this.lblUrl.AutoSize = true;
             this.lblUrl.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblUrl.Location = new System.Drawing.Point(12, 152);
+            this.lblUrl.Location = new System.Drawing.Point(12, 293);
             this.lblUrl.Name = "lblUrl";
             this.lblUrl.Size = new System.Drawing.Size(43, 21);
             this.lblUrl.TabIndex = 6;
@@ -123,20 +124,11 @@ namespace RandomGithubWinFormsUI
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLanguage.Location = new System.Drawing.Point(12, 173);
+            this.lblLanguage.Location = new System.Drawing.Point(12, 314);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(85, 21);
             this.lblLanguage.TabIndex = 7;
             this.lblLanguage.Text = "Language:";
-            // 
-            // lblOwnerGHValue
-            // 
-            this.lblOwnerGHValue.AutoSize = true;
-            this.lblOwnerGHValue.Location = new System.Drawing.Point(146, 89);
-            this.lblOwnerGHValue.Name = "lblOwnerGHValue";
-            this.lblOwnerGHValue.Size = new System.Drawing.Size(89, 21);
-            this.lblOwnerGHValue.TabIndex = 8;
-            this.lblOwnerGHValue.Text = "{OwnerGH}";
             // 
             // lblOwnerValue
             // 
@@ -165,28 +157,10 @@ namespace RandomGithubWinFormsUI
             this.lblNameValue.TabIndex = 13;
             this.lblNameValue.Text = "{Name}";
             // 
-            // lblDescValue
-            // 
-            this.lblDescValue.AutoSize = true;
-            this.lblDescValue.Location = new System.Drawing.Point(146, 131);
-            this.lblDescValue.Name = "lblDescValue";
-            this.lblDescValue.Size = new System.Drawing.Size(53, 21);
-            this.lblDescValue.TabIndex = 12;
-            this.lblDescValue.Text = "{Desc}";
-            // 
-            // lblUrlValue
-            // 
-            this.lblUrlValue.AutoSize = true;
-            this.lblUrlValue.Location = new System.Drawing.Point(146, 152);
-            this.lblUrlValue.Name = "lblUrlValue";
-            this.lblUrlValue.Size = new System.Drawing.Size(41, 21);
-            this.lblUrlValue.TabIndex = 11;
-            this.lblUrlValue.Text = "{Url}";
-            // 
             // lblLanguageValue
             // 
             this.lblLanguageValue.AutoSize = true;
-            this.lblLanguageValue.Location = new System.Drawing.Point(146, 173);
+            this.lblLanguageValue.Location = new System.Drawing.Point(91, 314);
             this.lblLanguageValue.Name = "lblLanguageValue";
             this.lblLanguageValue.Size = new System.Drawing.Size(88, 21);
             this.lblLanguageValue.TabIndex = 14;
@@ -194,7 +168,7 @@ namespace RandomGithubWinFormsUI
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(8, 274);
+            this.btnFind.Location = new System.Drawing.Point(182, 369);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(171, 58);
             this.btnFind.TabIndex = 15;
@@ -205,7 +179,7 @@ namespace RandomGithubWinFormsUI
             // lblRemainingValue
             // 
             this.lblRemainingValue.AutoSize = true;
-            this.lblRemainingValue.Location = new System.Drawing.Point(146, 194);
+            this.lblRemainingValue.Location = new System.Drawing.Point(122, 335);
             this.lblRemainingValue.Name = "lblRemainingValue";
             this.lblRemainingValue.Size = new System.Drawing.Size(91, 21);
             this.lblRemainingValue.TabIndex = 17;
@@ -215,28 +189,71 @@ namespace RandomGithubWinFormsUI
             // 
             this.lblRemainingCalls.AutoSize = true;
             this.lblRemainingCalls.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRemainingCalls.Location = new System.Drawing.Point(12, 194);
+            this.lblRemainingCalls.Location = new System.Drawing.Point(12, 335);
             this.lblRemainingCalls.Name = "lblRemainingCalls";
             this.lblRemainingCalls.Size = new System.Drawing.Size(115, 21);
             this.lblRemainingCalls.TabIndex = 16;
             this.lblRemainingCalls.Text = "Remaing Calls:";
             // 
+            // textBoxDesc
+            // 
+            this.textBoxDesc.Location = new System.Drawing.Point(13, 156);
+            this.textBoxDesc.Multiline = true;
+            this.textBoxDesc.Name = "textBoxDesc";
+            this.textBoxDesc.Size = new System.Drawing.Size(510, 134);
+            this.textBoxDesc.TabIndex = 18;
+            // 
+            // linkLabelGitHub
+            // 
+            this.linkLabelGitHub.AutoSize = true;
+            this.linkLabelGitHub.Location = new System.Drawing.Point(150, 430);
+            this.linkLabelGitHub.Name = "linkLabelGitHub";
+            this.linkLabelGitHub.Size = new System.Drawing.Size(234, 21);
+            this.linkLabelGitHub.TabIndex = 36;
+            this.linkLabelGitHub.TabStop = true;
+            this.linkLabelGitHub.Text = "https://github.com/JoyfulReaper";
+            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
+            // 
+            // linkLabelOwner
+            // 
+            this.linkLabelOwner.AutoSize = true;
+            this.linkLabelOwner.Location = new System.Drawing.Point(146, 89);
+            this.linkLabelOwner.Name = "linkLabelOwner";
+            this.linkLabelOwner.Size = new System.Drawing.Size(67, 21);
+            this.linkLabelOwner.TabIndex = 37;
+            this.linkLabelOwner.TabStop = true;
+            this.linkLabelOwner.Text = "{Owner}";
+            this.linkLabelOwner.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOwner_LinkClicked);
+            // 
+            // linkLabelUrl
+            // 
+            this.linkLabelUrl.AutoSize = true;
+            this.linkLabelUrl.Location = new System.Drawing.Point(59, 293);
+            this.linkLabelUrl.Name = "linkLabelUrl";
+            this.linkLabelUrl.Size = new System.Drawing.Size(41, 21);
+            this.linkLabelUrl.TabIndex = 38;
+            this.linkLabelUrl.TabStop = true;
+            this.linkLabelUrl.Text = "{Url}";
+            this.linkLabelUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUrl_LinkClicked);
+            // 
             // frmRandomGitHub
             // 
+            this.AcceptButton = this.btnFind;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(535, 471);
+            this.Controls.Add(this.linkLabelUrl);
+            this.Controls.Add(this.linkLabelOwner);
+            this.Controls.Add(this.linkLabelGitHub);
+            this.Controls.Add(this.textBoxDesc);
             this.Controls.Add(this.lblRemainingValue);
             this.Controls.Add(this.lblRemainingCalls);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.lblLanguageValue);
             this.Controls.Add(this.lblNameValue);
-            this.Controls.Add(this.lblDescValue);
-            this.Controls.Add(this.lblUrlValue);
             this.Controls.Add(this.lblIdValue);
             this.Controls.Add(this.lblOwnerValue);
-            this.Controls.Add(this.lblOwnerGHValue);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.lblDescription);
@@ -264,15 +281,16 @@ namespace RandomGithubWinFormsUI
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblLanguage;
-        private System.Windows.Forms.Label lblOwnerGHValue;
         private System.Windows.Forms.Label lblOwnerValue;
         private System.Windows.Forms.Label lblIdValue;
         private System.Windows.Forms.Label lblNameValue;
-        private System.Windows.Forms.Label lblDescValue;
-        private System.Windows.Forms.Label lblUrlValue;
         private System.Windows.Forms.Label lblLanguageValue;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.Label lblRemainingValue;
         private System.Windows.Forms.Label lblRemainingCalls;
+        private System.Windows.Forms.TextBox textBoxDesc;
+        private System.Windows.Forms.LinkLabel linkLabelGitHub;
+        private System.Windows.Forms.LinkLabel linkLabelOwner;
+        private System.Windows.Forms.LinkLabel linkLabelUrl;
     }
 }
