@@ -44,6 +44,9 @@ namespace RandomGithubWinFormsUI
             this.lblDescValue = new System.Windows.Forms.Label();
             this.lblUrlValue = new System.Windows.Forms.Label();
             this.lblLanguageValue = new System.Windows.Forms.Label();
+            this.btnFind = new System.Windows.Forms.Button();
+            this.lblRemainingValue = new System.Windows.Forms.Label();
+            this.lblRemainingCalls = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -189,12 +192,44 @@ namespace RandomGithubWinFormsUI
             this.lblLanguageValue.TabIndex = 14;
             this.lblLanguageValue.Text = "{Language}";
             // 
+            // btnFind
+            // 
+            this.btnFind.Location = new System.Drawing.Point(8, 274);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(171, 58);
+            this.btnFind.TabIndex = 15;
+            this.btnFind.Text = "Find Random GitHub";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
+            // lblRemainingValue
+            // 
+            this.lblRemainingValue.AutoSize = true;
+            this.lblRemainingValue.Location = new System.Drawing.Point(146, 194);
+            this.lblRemainingValue.Name = "lblRemainingValue";
+            this.lblRemainingValue.Size = new System.Drawing.Size(91, 21);
+            this.lblRemainingValue.TabIndex = 17;
+            this.lblRemainingValue.Text = "{remaining}";
+            // 
+            // lblRemainingCalls
+            // 
+            this.lblRemainingCalls.AutoSize = true;
+            this.lblRemainingCalls.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblRemainingCalls.Location = new System.Drawing.Point(12, 194);
+            this.lblRemainingCalls.Name = "lblRemainingCalls";
+            this.lblRemainingCalls.Size = new System.Drawing.Size(111, 21);
+            this.lblRemainingCalls.TabIndex = 16;
+            this.lblRemainingCalls.Text = "Remaing Calls";
+            // 
             // frmRandomGitHub
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblRemainingValue);
+            this.Controls.Add(this.lblRemainingCalls);
+            this.Controls.Add(this.btnFind);
             this.Controls.Add(this.lblLanguageValue);
             this.Controls.Add(this.lblNameValue);
             this.Controls.Add(this.lblDescValue);
@@ -236,5 +271,8 @@ namespace RandomGithubWinFormsUI
         private System.Windows.Forms.Label lblDescValue;
         private System.Windows.Forms.Label lblUrlValue;
         private System.Windows.Forms.Label lblLanguageValue;
+        private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.Label lblRemainingValue;
+        private System.Windows.Forms.Label lblRemainingCalls;
     }
 }
