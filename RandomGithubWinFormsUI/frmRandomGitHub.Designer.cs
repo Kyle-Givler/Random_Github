@@ -217,9 +217,9 @@ namespace RandomGithubWinFormsUI
             this.lblRemainingCalls.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblRemainingCalls.Location = new System.Drawing.Point(12, 194);
             this.lblRemainingCalls.Name = "lblRemainingCalls";
-            this.lblRemainingCalls.Size = new System.Drawing.Size(111, 21);
+            this.lblRemainingCalls.Size = new System.Drawing.Size(115, 21);
             this.lblRemainingCalls.TabIndex = 16;
-            this.lblRemainingCalls.Text = "Remaing Calls";
+            this.lblRemainingCalls.Text = "Remaing Calls:";
             // 
             // frmRandomGitHub
             // 
