@@ -24,6 +24,7 @@ SOFTWARE.
 */
 
 using RandomGithubLibrary;
+using RandomGithubLibrary.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -33,10 +34,50 @@ namespace RandomGithubConsoleUI
     {
         static async Task Main(string[] args)
         {
+            //int max = int.MaxValue;
+            int max = 300000000; // TODO read this from config
+
             GithubAPI gh = new GithubAPI();
 
-            await gh.GetUser("JoyfulReaper");
-            await gh.GetRepo("JoyfulReaper", "Random_GitHub");
+            //await gh.GetUser("JoyfulReaper");
+            //await gh.GetRepo(22087777);
+
+            Random rand = new Random();
+            
+
+            GitHubRepo repo = null;
+            int count = 0;
+            while (repo?.Name == null)
+            {
+                count++;
+                int id = rand.Next(1, max);
+
+                try
+                {
+                    repo = await gh.GetRepo(id);
+                }
+                catch (RateLimitedException)
+                {
+                    Console.WriteLine("You cannot make any more API calls due to rate limiting");
+                    System.Environment.Exit(-1);
+                }
+
+                if(repo.Name == null)
+                {
+                    max = id - 1;
+                    id--;
+                }
+
+                Console.WriteLine(repo.Name);
+                Console.WriteLine(repo.Description);
+                Console.WriteLine(repo.Language);
+
+                Console.WriteLine();
+                Console.WriteLine($"After {count} tries. Id: {id}");
+                Console.WriteLine($"Calls until limited: {gh.RateLimitRemaining}");
+                Console.WriteLine();
+            }
+
         }
     }
 }

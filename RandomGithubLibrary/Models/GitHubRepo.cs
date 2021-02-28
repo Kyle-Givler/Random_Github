@@ -27,7 +27,7 @@ using System;
 
 namespace RandomGithubLibrary.Models
 {
-    public class GithubRepo
+    public class GitHubRepo
     {
         public int Id { get; set; }
         public string Node_id { get; set; }

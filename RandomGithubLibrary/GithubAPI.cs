@@ -26,6 +26,7 @@ SOFTWARE.
 using RandomGithubLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -35,8 +36,10 @@ namespace RandomGithubLibrary
 {
     public class GithubAPI
     {
+        public int RateLimitRemaining { get; private set; } = -1;
+
         private static readonly HttpClient client = new HttpClient();
-        private static readonly string login = "user:token"; // TODO Get this from appsettings.json
+        private static readonly string login = ""; // TODO Get this from appsettings.json
 
         public GithubAPI()
         {
@@ -52,10 +55,24 @@ namespace RandomGithubLibrary
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(authArray));
         }
 
-        public async Task<GithubRepo> GetRepo(string user, string repo)
+        public async Task<GitHubRepo> GetRepo(string user, string repo)
         {
             var response = await client.GetAsync($"/repos/{user}/{repo}");
-            var result = await response.Content.ReadAsAsync<GithubRepo>();
+            var result = await response.Content.ReadAsAsync<GitHubRepo>();
+
+            ThrowIfRateLimited(response);
+            UpdateRateLimit(response);
+
+            return result;
+        }
+
+        public async Task<GitHubRepo> GetRepo(int id)
+        {
+            var response = await client.GetAsync($"/repositories/{id}");
+            var result = await response.Content.ReadAsAsync<GitHubRepo>();
+
+            ThrowIfRateLimited(response);
+            UpdateRateLimit(response);
 
             return result;
         }
@@ -65,7 +82,26 @@ namespace RandomGithubLibrary
             var response = await client.GetAsync($"/users/{user}");
             var result = await response.Content.ReadAsAsync<GitHubUser>();
 
+            ThrowIfRateLimited(response);
+            UpdateRateLimit(response);
+
             return result;
+        }
+
+        private void ThrowIfRateLimited(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.Headers.GetValues("X-RateLimit-Remaining").First() == "0")
+                {
+                    throw new RateLimitedException("You hit the rate limit :(");
+                }
+            }
+        }
+
+        private void UpdateRateLimit(HttpResponseMessage response)
+        {
+            RateLimitRemaining = int.Parse(response.Headers.GetValues("X-RateLimit-Remaining").First());
         }
     }
 }
