@@ -34,7 +34,7 @@ namespace RandomGithubConsoleUI
 {
     class Program
     {
-        private static Random rand = new Random();
+        private static readonly Random rand = new Random();
         private static int tryMax = -1;
 
         static async Task Main(string[] args)
