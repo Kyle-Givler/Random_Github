@@ -78,6 +78,7 @@ namespace RandomGithubConsoleUI
                         Console.WriteLine(ex.Message);
                     }
 
+                    // Try to waste less API calls
                     if (repo.Name == null)
                     {
                         tryMax = id - 1;
