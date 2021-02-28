@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright(c) 2020 Kyle Givler
+Copyright(c) 2021 Kyle Givler
 https://github.com/JoyfulReaper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using RandomGithubLibrary;
 using RandomGithubLibrary.Models;
 using System;
@@ -32,28 +34,34 @@ namespace RandomGithubConsoleUI
 {
     class Program
     {
+        private static Random rand = new Random();
+        private static int tryMax = -1;
+
         static async Task Main(string[] args)
         {
-            //int max = int.MaxValue;
-            int max = 300000000; // TODO read this from config. This is a decent default
+            var serviceProvider = Bootstrap.Initialize(args);
 
-            GithubAPI gh = new GithubAPI();
-            Random rand = new Random();
+            var config = serviceProvider.GetRequiredService<IConfiguration>();
+            var api = serviceProvider.GetRequiredService<IGithubAPI>();
 
-            GitHubRepo repo = null;
+            IGitHubRepo repo = null;
 
             bool again = true;
 
             while (again)
             {
-                int tryMax = max;
+                if (int.TryParse(config.GetSection("MaxId").Value, out int res))
+                {
+                    tryMax = res;
+                }
+
                 while (repo?.Name == null)
                 {
                     int id = rand.Next(1, tryMax);
 
                     try
                     {
-                        repo = await gh.GetRepo(id);
+                        repo = await api.GetRepo(id);
                     }
                     catch (RateLimitedException)
                     {
@@ -74,7 +82,7 @@ namespace RandomGithubConsoleUI
                     {
                         DisplayRepoInfo(repo);
                         Console.WriteLine();
-                        DisplayRateLimitingInfo(gh);
+                        DisplayRateLimitingInfo(api);
                     }
                 }
 
@@ -91,7 +99,7 @@ namespace RandomGithubConsoleUI
 
         }
 
-        private static void DisplayRepoInfo(GitHubRepo repo)
+        private static void DisplayRepoInfo(IGitHubRepo repo)
         {
             Console.WriteLine("I found this random GitHub just for you!");
             Console.WriteLine($"Id: {repo.Id}");
@@ -103,7 +111,7 @@ namespace RandomGithubConsoleUI
             Console.WriteLine($"Programming Language: {repo.Language}");
         }
 
-        private static void DisplayRateLimitingInfo(GithubAPI gh)
+        private static void DisplayRateLimitingInfo(IGithubAPI gh)
         {
             Console.WriteLine($"API calls until limited: {gh.RateLimitRemaining}");
         }

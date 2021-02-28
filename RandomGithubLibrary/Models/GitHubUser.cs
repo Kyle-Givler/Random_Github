@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright(c) 2020 Kyle Givler
+Copyright(c) 2021 Kyle Givler
 https://github.com/JoyfulReaper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,40 +27,40 @@ using System;
 
 namespace RandomGithubLibrary.Models
 {
-    public class GitHubUser
+    public class GitHubUser : IGitHubUser
     {
-        public string login { get; set; }
-        public int id { get; set; }
-        public string node_id { get; set; }
-        public string avatar_url { get; set; }
-        public string gravatar_id { get; set; }
-        public string url { get; set; }
-        public string html_url { get; set; }
-        public string followers_url { get; set; }
-        public string following_url { get; set; }
-        public string gists_url { get; set; }
-        public string starred_url { get; set; }
-        public string subscriptions_url { get; set; }
-        public string organizations_url { get; set; }
-        public string repos_url { get; set; }
-        public string events_url { get; set; }
-        public string received_events_url { get; set; }
-        public string type { get; set; }
-        public bool site_admin { get; set; }
-        public string name { get; set; }
-        public string company { get; set; }
-        public string blog { get; set; }
-        public string location { get; set; }
-        public object email { get; set; }
-        public bool hireable { get; set; }
-        public string bio { get; set; }
-        public object twitter_username { get; set; }
-        public int public_repos { get; set; }
-        public int public_gists { get; set; }
-        public int followers { get; set; }
-        public int following { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
+        public string Login { get; set; }
+        public int Id { get; set; }
+        public string Node_id { get; set; }
+        public string Avatar_url { get; set; }
+        public string Gravatar_id { get; set; }
+        public string Url { get; set; }
+        public string Html_url { get; set; }
+        public string Followers_url { get; set; }
+        public string Following_url { get; set; }
+        public string Gists_url { get; set; }
+        public string Starred_url { get; set; }
+        public string Subscriptions_url { get; set; }
+        public string Organizations_url { get; set; }
+        public string Repos_url { get; set; }
+        public string Events_url { get; set; }
+        public string Received_events_url { get; set; }
+        public string Type { get; set; }
+        public bool Site_admin { get; set; }
+        public string Name { get; set; }
+        public string Company { get; set; }
+        public string Blog { get; set; }
+        public string Location { get; set; }
+        public object Email { get; set; }
+        public bool Hireable { get; set; }
+        public string Bio { get; set; }
+        public object Twitter_username { get; set; }
+        public int Public_repos { get; set; }
+        public int Public_gists { get; set; }
+        public int Followers { get; set; }
+        public int Following { get; set; }
+        public DateTime Created_at { get; set; }
+        public DateTime Updated_at { get; set; }
     }
 
 }

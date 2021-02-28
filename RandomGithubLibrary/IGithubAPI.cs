@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright(c) 2021 Kyle Givler
+Copyright(c) 2020 Kyle Givler
 https://github.com/JoyfulReaper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,15 +23,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
+using RandomGithubLibrary.Models;
+using System.Threading.Tasks;
 
 namespace RandomGithubLibrary
 {
-    public class RateLimitedException : Exception
+    public interface IGithubAPI
     {
-        public RateLimitedException(string message) : base (message)
-        {
+        int RateLimitRemaining { get; }
 
-        }
+        Task<GitHubRepo> GetRepo(int id);
+        Task<GitHubRepo> GetRepo(string user, string repo);
+        Task<GitHubUser> GetUser(string user);
     }
 }

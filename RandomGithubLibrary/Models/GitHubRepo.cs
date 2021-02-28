@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright(c) 2020 Kyle Givler
+Copyright(c) 2021 Kyle Givler
 https://github.com/JoyfulReaper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,7 +27,7 @@ using System;
 
 namespace RandomGithubLibrary.Models
 {
-    public class GitHubRepo
+    public class GitHubRepo : IGitHubRepo
     {
         public int Id { get; set; }
         public string Node_id { get; set; }

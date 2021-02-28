@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright(c) 2020 Kyle Givler
+Copyright(c) 2021 Kyle Givler
 https://github.com/JoyfulReaper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,6 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using Microsoft.Extensions.Configuration;
 using RandomGithubLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -34,16 +35,16 @@ using System.Threading.Tasks;
 
 namespace RandomGithubLibrary
 {
-    public class GithubAPI
+    public class GithubAPI : IGithubAPI
     {
         public int RateLimitRemaining { get; private set; } = -1;
 
-        private static readonly HttpClient client = new HttpClient();
+        private readonly string userName;
+        private readonly string token;
+        private readonly HttpClient client = new HttpClient();
+        private readonly IConfiguration configuration;
 
-        // Put you GitHub username and personal token here for more RateLimiting
-        private static readonly string login = ""; // TODO Get this from appsettings.json
-
-        public GithubAPI()
+        public GithubAPI(IConfiguration configuration)
         {
             client.BaseAddress = new Uri("https://api.github.com");
             client.DefaultRequestHeaders.Accept.Clear();
@@ -53,8 +54,12 @@ namespace RandomGithubLibrary
             client.DefaultRequestHeaders.UserAgent.Clear();
             client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("RandomGithub", "0.1"));
 
-            var authArray = Encoding.ASCII.GetBytes(login);
+            userName = configuration.GetSection("UserName").Value;
+            token = configuration.GetSection("Token").Value;
+
+            var authArray = Encoding.ASCII.GetBytes($"{userName}:{token}");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(authArray));
+            this.configuration = configuration;
         }
 
         public async Task<GitHubRepo> GetRepo(string user, string repo)
