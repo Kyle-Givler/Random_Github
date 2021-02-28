@@ -39,6 +39,8 @@ namespace RandomGithubLibrary
         public int RateLimitRemaining { get; private set; } = -1;
 
         private static readonly HttpClient client = new HttpClient();
+
+        // Put you GitHub username and personal token here for more RateLimiting
         private static readonly string login = ""; // TODO Get this from appsettings.json
 
         public GithubAPI()

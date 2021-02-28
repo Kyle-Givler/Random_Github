@@ -35,49 +35,72 @@ namespace RandomGithubConsoleUI
         static async Task Main(string[] args)
         {
             //int max = int.MaxValue;
-            int max = 300000000; // TODO read this from config
+            int max = 300000000; // TODO read this from config. This is a decent default
 
             GithubAPI gh = new GithubAPI();
-
-            //await gh.GetUser("JoyfulReaper");
-            //await gh.GetRepo(22087777);
-
             Random rand = new Random();
-            
 
             GitHubRepo repo = null;
-            int count = 0;
-            while (repo?.Name == null)
+
+            bool again = true;
+
+            while (again)
             {
-                count++;
-                int id = rand.Next(1, max);
-
-                try
+                int tryMax = max;
+                while (repo?.Name == null)
                 {
-                    repo = await gh.GetRepo(id);
-                }
-                catch (RateLimitedException)
-                {
-                    Console.WriteLine("You cannot make any more API calls due to rate limiting");
-                    System.Environment.Exit(-1);
-                }
+                    int id = rand.Next(1, tryMax);
 
-                if(repo.Name == null)
-                {
-                    max = id - 1;
-                    id--;
-                }
+                    try
+                    {
+                        repo = await gh.GetRepo(id);
+                    }
+                    catch (RateLimitedException)
+                    {
+                        Console.WriteLine("You cannot make any more API calls due to rate limiting. Try again later.");
+                        Environment.Exit(-1);
+                    }
 
-                Console.WriteLine(repo.Name);
-                Console.WriteLine(repo.Description);
-                Console.WriteLine(repo.Language);
+                    if (repo.Name == null)
+                    {
+                        tryMax = id - 1;
+                    }
+                    else
+                    {
+                        DisplayRepoInfo(repo);
+                        Console.WriteLine();
+                        DisplayRateLimitingInfo(gh);
+                    }
+                }
 
                 Console.WriteLine();
-                Console.WriteLine($"After {count} tries. Id: {id}");
-                Console.WriteLine($"Calls until limited: {gh.RateLimitRemaining}");
+                Console.Write("Would you like to find another (Y/n): ");
+                var input = Console.ReadLine();
+                if(!string.IsNullOrEmpty(input) && Char.ToUpperInvariant(input[0]) == 'N')
+                {
+                    again = false;
+                }
+                repo = null;
                 Console.WriteLine();
             }
 
+        }
+
+        private static void DisplayRepoInfo(GitHubRepo repo)
+        {
+            Console.WriteLine("I found this random GitHub just for you!");
+            Console.WriteLine($"Id: {repo.Id}");
+            Console.WriteLine($"Owner: {repo.Owner.Login}");
+            Console.WriteLine($"Owner's GitHub: {repo.Owner.Html_url}");
+            Console.WriteLine($"Name: {repo.Name}");
+            Console.WriteLine($"Description: {repo.Description}");
+            Console.WriteLine($"URL: {repo.Html_url}");
+            Console.WriteLine($"Programming Language: {repo.Language}");
+        }
+
+        private static void DisplayRateLimitingInfo(GithubAPI gh)
+        {
+            Console.WriteLine($"Calls until limited: {gh.RateLimitRemaining}");
         }
     }
 }
