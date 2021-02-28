@@ -1,21 +1,22 @@
-﻿using System;
+﻿using RandomGithubLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RandomGithubWinFormsUI
 {
-    public partial class Form1 : Form
+    public partial class frmRandomGitHub : Form
     {
-        public Form1()
+        private readonly IGithubAPI githubAPI;
+
+        public frmRandomGitHub(IGithubAPI githubAPI)
         {
             InitializeComponent();
+            this.githubAPI = githubAPI;
         }
-
     }
 }
