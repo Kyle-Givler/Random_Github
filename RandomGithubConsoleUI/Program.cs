@@ -60,6 +60,11 @@ namespace RandomGithubConsoleUI
                         Console.WriteLine("You cannot make any more API calls due to rate limiting. Try again later.");
                         Environment.Exit(-1);
                     }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Something went wrong with the API call!");
+                        Console.WriteLine(ex.Message);
+                    }
 
                     if (repo.Name == null)
                     {
@@ -100,7 +105,7 @@ namespace RandomGithubConsoleUI
 
         private static void DisplayRateLimitingInfo(GithubAPI gh)
         {
-            Console.WriteLine($"Calls until limited: {gh.RateLimitRemaining}");
+            Console.WriteLine($"API calls until limited: {gh.RateLimitRemaining}");
         }
     }
 }
