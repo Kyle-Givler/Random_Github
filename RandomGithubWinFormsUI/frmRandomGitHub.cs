@@ -70,6 +70,10 @@ namespace RandomGithubWinFormsUI
             linkLabelUrl.Text = repo?.Html_url ?? "";
             lblLanguageValue.Text = repo?.Language ?? "";
 
+            lblForksValue.Text = repo?.Forks_count.ToString() ?? "";
+            lblStarredValue.Text = repo?.Stargazers_count.ToString() ?? "";
+            lblWatchersValue.Text = repo?.Watchers_count.ToString() ?? "";
+
             if (githubAPI.RateLimitRemaining < 0)
             {
                 lblRemainingValue.Text = "Unknown";
@@ -111,6 +115,12 @@ namespace RandomGithubWinFormsUI
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error Encountered during API Call:\n{ex.Message}", "Something went wrong!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Try to waste less API calls
+                if (repo.Name == null)
+                {
+                    tryMax = id - 1;
                 }
             }
 

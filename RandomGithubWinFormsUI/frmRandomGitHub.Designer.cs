@@ -48,6 +48,12 @@ namespace RandomGithubWinFormsUI
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.linkLabelOwner = new System.Windows.Forms.LinkLabel();
             this.linkLabelUrl = new System.Windows.Forms.LinkLabel();
+            this.lblForks = new System.Windows.Forms.Label();
+            this.lblForksValue = new System.Windows.Forms.Label();
+            this.lblStarredValue = new System.Windows.Forms.Label();
+            this.lblStars = new System.Windows.Forms.Label();
+            this.lblWatchersValue = new System.Windows.Forms.Label();
+            this.lblWatchers = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -200,7 +206,8 @@ namespace RandomGithubWinFormsUI
             this.textBoxDesc.Location = new System.Drawing.Point(13, 156);
             this.textBoxDesc.Multiline = true;
             this.textBoxDesc.Name = "textBoxDesc";
-            this.textBoxDesc.Size = new System.Drawing.Size(510, 134);
+            this.textBoxDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxDesc.Size = new System.Drawing.Size(510, 71);
             this.textBoxDesc.TabIndex = 18;
             // 
             // linkLabelGitHub
@@ -236,6 +243,63 @@ namespace RandomGithubWinFormsUI
             this.linkLabelUrl.Text = "{Url}";
             this.linkLabelUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUrl_LinkClicked);
             // 
+            // lblForks
+            // 
+            this.lblForks.AutoSize = true;
+            this.lblForks.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblForks.Location = new System.Drawing.Point(13, 230);
+            this.lblForks.Name = "lblForks";
+            this.lblForks.Size = new System.Drawing.Size(53, 21);
+            this.lblForks.TabIndex = 39;
+            this.lblForks.Text = "Forks:";
+            // 
+            // lblForksValue
+            // 
+            this.lblForksValue.AutoSize = true;
+            this.lblForksValue.Location = new System.Drawing.Point(65, 230);
+            this.lblForksValue.Name = "lblForksValue";
+            this.lblForksValue.Size = new System.Drawing.Size(58, 21);
+            this.lblForksValue.TabIndex = 40;
+            this.lblForksValue.Text = "{Forks}";
+            // 
+            // lblStarredValue
+            // 
+            this.lblStarredValue.AutoSize = true;
+            this.lblStarredValue.Location = new System.Drawing.Point(72, 251);
+            this.lblStarredValue.Name = "lblStarredValue";
+            this.lblStarredValue.Size = new System.Drawing.Size(70, 21);
+            this.lblStarredValue.TabIndex = 42;
+            this.lblStarredValue.Text = "{Starred}";
+            // 
+            // lblStars
+            // 
+            this.lblStars.AutoSize = true;
+            this.lblStars.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblStars.Location = new System.Drawing.Point(12, 251);
+            this.lblStars.Name = "lblStars";
+            this.lblStars.Size = new System.Drawing.Size(68, 21);
+            this.lblStars.TabIndex = 41;
+            this.lblStars.Text = "Starred:";
+            // 
+            // lblWatchersValue
+            // 
+            this.lblWatchersValue.AutoSize = true;
+            this.lblWatchersValue.Location = new System.Drawing.Point(91, 272);
+            this.lblWatchersValue.Name = "lblWatchersValue";
+            this.lblWatchersValue.Size = new System.Drawing.Size(84, 21);
+            this.lblWatchersValue.TabIndex = 44;
+            this.lblWatchersValue.Text = "{Watchers}";
+            // 
+            // lblWatchers
+            // 
+            this.lblWatchers.AutoSize = true;
+            this.lblWatchers.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblWatchers.Location = new System.Drawing.Point(13, 272);
+            this.lblWatchers.Name = "lblWatchers";
+            this.lblWatchers.Size = new System.Drawing.Size(81, 21);
+            this.lblWatchers.TabIndex = 43;
+            this.lblWatchers.Text = "Watchers:";
+            // 
             // frmRandomGitHub
             // 
             this.AcceptButton = this.btnFind;
@@ -243,6 +307,12 @@ namespace RandomGithubWinFormsUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(535, 471);
+            this.Controls.Add(this.lblWatchersValue);
+            this.Controls.Add(this.lblWatchers);
+            this.Controls.Add(this.lblStarredValue);
+            this.Controls.Add(this.lblStars);
+            this.Controls.Add(this.lblForksValue);
+            this.Controls.Add(this.lblForks);
             this.Controls.Add(this.linkLabelUrl);
             this.Controls.Add(this.linkLabelOwner);
             this.Controls.Add(this.linkLabelGitHub);
@@ -292,5 +362,11 @@ namespace RandomGithubWinFormsUI
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.LinkLabel linkLabelOwner;
         private System.Windows.Forms.LinkLabel linkLabelUrl;
+        private System.Windows.Forms.Label lblForks;
+        private System.Windows.Forms.Label lblForksValue;
+        private System.Windows.Forms.Label lblStarredValue;
+        private System.Windows.Forms.Label lblStars;
+        private System.Windows.Forms.Label lblWatchersValue;
+        private System.Windows.Forms.Label lblWatchers;
     }
 }
